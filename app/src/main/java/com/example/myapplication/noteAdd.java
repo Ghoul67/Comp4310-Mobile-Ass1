@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -86,11 +87,9 @@ public class noteAdd extends AppCompatActivity {
             public void onClick(View v) {
                 if(!edtCourseName.getText().toString().isEmpty() && !edtContent.getText().toString().isEmpty()) {
                     String json = saveNote(colorList, colors);
-                    editor.putInt(KEY_COUNT,size);
-                    editor.putString(KEY, json);
-                    editor.apply();
-                    editor.commit();
-                    finish();
+                    Intent intent = new Intent(noteAdd.this, MainActivity.class);
+                    intent.putExtra("note", json);
+                    startActivity(intent);
                 }else if(edtCourseName.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Course name cannot be empty", Toast.LENGTH_SHORT).show();
                     edtCourseName.setHintTextColor(Color.parseColor("#FF0000"));

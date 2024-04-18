@@ -48,10 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
 
+    private Intent intent;
+
     int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("tag1", "onCreate");
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -68,32 +71,39 @@ public class MainActivity extends AppCompatActivity {
 
         editor = spList.edit();
 
+        intent = getIntent();
 
 
-        if(sp.contains(KEY_COUNT)) {
-            count = sp.getInt(KEY_COUNT, 0);
 
+        if(intent.getStringExtra("note") != null){
+            Log.d("tag1", "if onCreate ");
+
+            String json = intent.getStringExtra("note");
+            Gson gson = new Gson();
+            Note note = gson.fromJson(json, Note.class);
+
+            noteList = gson.fromJson(spList.getString(KEY_LIST, ""), ArrayList.class);
+            noteList.add(note);
+            count = noteList.size();
             String[] names = new String[count];
             String[] contents = new String[count];
             String[] colors = new String[count];
 
-            for(int i = count-1; i == 0; i--) {
-                String json = sp.getString("note" + i, "");
-                Gson gson = new Gson();
-                Note note = gson.fromJson(json, Note.class);
-                noteList.add(note);
-                String jsonList = gson.toJson(noteList);
-                editor.putString(KEY_LIST, jsonList);
-                editor.apply();
-                editor.commit();
-                size = noteList.size();
+            for (int i = count-1; i == 0; i--){
+                names[i] = noteList.get(i).getCourse();
+                contents[i] = noteList.get(i).getNote();
+                colors[i] = noteList.get(i).getColor();
             }
             for (int i = count-1; i == 0; i--){
                 names[i] = noteList.get(i).getCourse();
                 contents[i] = noteList.get(i).getNote();
                 colors[i] = noteList.get(i).getColor();
             }
+            json = gson.toJson(noteList);
+            editor.putString(KEY_LIST, json);
+            editor.commit();
 
+            size = noteList.size();
             loadNoteView(names, contents, colors);
         }else{
             size = 0;
@@ -109,32 +119,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(Bundle savedInstanceState) {
         super.onResume();
 
-        Log.d("tag1", sp.getInt(KEY_COUNT, 0) + "");
+        if(intent.getStringExtra("note") != null){
+            Log.d("tag1", "if onResume ");
 
-        if(sp.contains(KEY_COUNT)) {
-            count = sp.getInt(KEY_COUNT, 0);
+            String json = intent.getStringExtra("note");
+            Gson gson = new Gson();
+            Note note = gson.fromJson(json, Note.class);
 
+            noteList = gson.fromJson(spList.getString(KEY_LIST, ""), ArrayList.class);
+            noteList.add(note);
+            count = noteList.size();
             String[] names = new String[count];
             String[] contents = new String[count];
             String[] colors = new String[count];
 
-            for(int i = count-1; i == 0; i--) {
-                String json = sp.getString("note" + i, "");
-                Gson gson = new Gson();
-                Note note = gson.fromJson(json, Note.class);
-                noteList.add(note);
-                String jsonList = gson.toJson(noteList);
-                editor.putString(KEY_LIST, jsonList);
-                editor.apply();
-                editor.commit();
-                size = noteList.size();
+            for (int i = count-1; i == 0; i--){
+                names[i] = noteList.get(i).getCourse();
+                contents[i] = noteList.get(i).getNote();
+                colors[i] = noteList.get(i).getColor();
             }
             for (int i = count-1; i == 0; i--){
                 names[i] = noteList.get(i).getCourse();
                 contents[i] = noteList.get(i).getNote();
                 colors[i] = noteList.get(i).getColor();
             }
+            json = gson.toJson(noteList);
+            editor.putString(KEY_LIST, json);
+            editor.commit();
 
+            size = noteList.size();
             loadNoteView(names, contents, colors);
         }else{
             size = 0;
