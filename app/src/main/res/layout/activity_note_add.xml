@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".noteAdd"
+    style="@style/defaultLayout">
+
+    <EditText
+        android:id="@+id/edtCourseName"
+        style="@style/edtTextS"
+        android:layout_height="wrap_content"
+        android:hint="@string/course_name1"
+        android:padding="5dp"
+        android:textColorHint="#B1B1B1" />
+
+    <EditText
+        android:id="@+id/edtContent"
+        style="@style/edtTextS"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/enter_note"
+        android:padding="5dp"
+        android:textColorHint="#B1B1B1" />
+
+    <Spinner
+        android:id="@+id/spnColor"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#63666A"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:text="@string/save"
+        android:textColor="#FFFFFF"
+        android:id="@+id/btnSave" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

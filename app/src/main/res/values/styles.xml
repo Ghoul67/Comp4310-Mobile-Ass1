@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="defaultLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#393D47</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">30dp</item>
+    </style>
+
+    <style name="edtTextS">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">#63666A</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+</resources>
